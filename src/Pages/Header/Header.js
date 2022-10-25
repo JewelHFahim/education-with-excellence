@@ -1,10 +1,18 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/UserContext";
+import './Header.css'
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
 
-  const {user} = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return (
     <div className="bg-slate-900">
@@ -32,29 +40,31 @@ const Header = () => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow-lg bg-base-100 rounded-box w-52"
             >
               <li>
-              <Link to="/" >Home</Link>
+                <Link to="/">Home</Link>
               </li>
               <li>
-              <Link to="/cource">Cources</Link>
+                <Link to="/cource">Cources</Link>
               </li>
               <li>
-              <Link to="/cource">Blog</Link>
+                <Link to="/cource">Blog</Link>
               </li>
               <li>
-              <Link to="/cource">Contact</Link>
+                <Link to="/cource">Contact</Link>
               </li>
             </ul>
           </div>
           <Link className="text-xl text-center text-[#FF5349]">
             {" "}
             Education <br />{" "}
-            <span className="text-white font-light text-lg">with excellence</span>{" "}
+            <span className="text-white font-light text-lg">
+              with excellence
+            </span>{" "}
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex ">
           <ul className="menu menu-horizontal p-0">
             <li>
-              <Link to="/" >Home</Link>
+              <Link to="/">Home</Link>
             </li>
             <li>
               <Link to="/cources">Cources</Link>
@@ -68,14 +78,33 @@ const Header = () => {
             <li>
               <Link to="/contact">Contact</Link>
             </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
           </ul>
         </div>
         <div className="navbar-end">
-        <p>{user?.name}</p>
-          <Link className="btn ml-2">Get started</Link>
+          {user?.email ?
+
+            <div>
+            { 
+              user?.photoURL ? 
+              <Link to="/profile" className="tooltip tooltip-left" data-tip={user?.displayName}><img className="profile-pic border border-red-700 p-0.5 rounded-full" src={user?.photoURL} alt="" /></Link>
+              :
+              <Link to="/profile"><p>{user?.email}</p></Link> 
+            }
+            
+            </div>
+            : 
+            <Link to="/profile"><p>{user?.email}</p></Link>
+          }
+
+          {user?.email ? (
+            <button onClick={handleLogOut} className=" ml-2 btn btn-xs">
+              Log Out
+            </button>
+          ) : (
+            <button onClick={handleLogOut} className=" ml-2 btn btn-xs">
+              <Link to="/login">Login</Link>
+            </button>
+          )}
         </div>
       </div>
     </div>

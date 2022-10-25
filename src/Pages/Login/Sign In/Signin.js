@@ -122,6 +122,7 @@ const Signin = () => {
                   </button>
                 </div>
               </form>
+              <div className="divider">OR</div>
               <button
                 onClick={hadnleGoogleSignIn}
                 type="submit"

@@ -1,6 +1,6 @@
 import { FacebookAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Context/UserContext";
 import "./Login.css";
 import { FaGoogle, FaFacebook } from "react-icons/fa";
@@ -9,6 +9,7 @@ const Login = () => {
   const { logIn, googleSignIn, facebookSignIn } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
   const facebookProvider = new FacebookAuthProvider();
+  const navigate = useNavigate();
 
 
   const handleLogin = (event) => {
@@ -22,6 +23,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        navigate('/');
       })
       .catch((error) => {
         console.error(error);
@@ -99,6 +101,7 @@ const Login = () => {
                   </button>
                 </div>
               </form>
+              <div className="divider">OR</div>
               <button
                 onClick={hadnleGoogleSignIn}
                 type="submit"

@@ -8,6 +8,7 @@ import Signin from "../Pages/Login/Sign In/Signin";
 import Contact from "../Pages/Others/Contact/Contact";
 import ErrorPage from "../Pages/Others/ErrorPage/ErrorPage";
 import FAQ from "../Pages/Others/FAQ/FAQ";
+import Profile from "../Pages/Others/Profile/Profile";
 
 
 export const router = createBrowserRouter([
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
             {
                 path: '/signin',
                 element: <Signin></Signin>
+            },
+            {
+                path: '/profile',
+                element: <Profile></Profile>
             }
         ]
     }
