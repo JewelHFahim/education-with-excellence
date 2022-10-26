@@ -101,11 +101,12 @@ const Header = () => {
               Log Out
             </button>
           ) : (
-            <button onClick={handleLogOut} className=" ml-2 btn btn-xs">
+            <button onClick={handleLogOut} className=" ml-2 mr-2 btn btn-xs">
               <Link to="/login">Login</Link>
             </button>
           )}
         </div>
+        <input type="checkbox" className="toggle" checked />
       </div>
     </div>
   );

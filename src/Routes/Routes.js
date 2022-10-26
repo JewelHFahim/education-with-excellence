@@ -4,6 +4,7 @@ import Blog from "../Pages/Blog/Blog";
 import Category from "../Pages/Cources/Category/Category";
 import CourceDetail from "../Pages/Cources/CourceDetail/CourceDetail";
 import Cources from "../Pages/Cources/Cources";
+import SingleCource from "../Pages/Cources/SingleCource/SingleCource";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login/Login";
 import Signin from "../Pages/Login/Sign In/Signin";
@@ -30,13 +31,18 @@ export const router = createBrowserRouter([
                 element: <Cources></Cources>
             },
             {
-                path: '/category',
+                path: '/category/:id',
+                loader: ({params})=>fetch(`http://localhost:5000/category/${params.id}`),
                 element: <Category></Category>
             },
             {
-                path: '/cource/:id',
-                loader: (params)=>fetch(`http://localhost:5000/cource/${params.id}`),
+                path: '/cources/:id',
+                loader: ({params})=> fetch(`http://localhost:5000/cources/${params.id}`),
                 element: <CourceDetail></CourceDetail>
+            },
+            {
+                path: '',
+                element:<SingleCource></SingleCource>
             },
             {
                 path: '/blog',

@@ -5,7 +5,6 @@ import "./Cources.css";
 import { useLoaderData } from "react-router-dom";
 
 const Cources = () => {
-
   const cources = useLoaderData();
   const [categories, setCategories] = useState([]);
 
@@ -17,27 +16,25 @@ const Cources = () => {
 
   return (
     <div className="bg-base-100 min-h-screen">
-      <div className="flex w-11/12 mx-auto pt-5">
+      <div className="  lg:flex  w-11/12 mx-auto pt-5">
+        <div className="border border-slate-3 bg-slate-100  mx-5 mt-12 mb-3 min-w-fit max-h-screen p-2 rounded-lg">
+          <h1 className="text-center text-xl py-2 border border-b-orange-800 font-medium">All Categories</h1>
+          {categories.map((category) => (
+            <p key={category.id} className="text-blue-600 hover:underline py-1 font-medium">
+              <Link to={`/category/${category.id}`}>{category.name}</Link>
+            </p>
+          ))}
+        </div>
 
-<div className="border border-slate-200  mx-5 min-w-fit max-h-screen p-2 rounded-lg">
-  <h1 className="text-center text-xl py-2">All Categories</h1>
-  
-  {categories.map((category) => (
-  <p key={category.id}>
-    <Link to={`/category/${category.id}`}>{category.name}</Link>
-  </p>
-))}
-  
-</div>
-
-<div className="">
-  <div className="min-h-screen bg-base-100 grid grid-cols-3 mb-10 gap-5">
-    {cources.map((cource) => (
-      <SingleCource key={cource.id} cource={cource}></SingleCource>
-    ))}
-  </div>
-</div>
-</div>
+        <div className="">
+        <h1 className="text-center text-2xl py-2 font-medium text-orange-800">Our Courses</h1>
+          <div className="min-h-screen bg-base-100 grid grid-cols-1 lg:grid-cols-3 mb-10 gap-5">
+            {cources.map((cource) => (
+              <SingleCource key={cource.id} cource={cource}></SingleCource>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

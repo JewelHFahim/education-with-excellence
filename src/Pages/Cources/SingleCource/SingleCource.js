@@ -4,6 +4,8 @@ import "./SingleCource.css";
 import { FaStar, FaBookmark, FaShopify } from "react-icons/fa";
 
 const SingleCource = ({ cource }) => {
+
+  
   const {id, title, image, description, price, total_enrooled, rating } = cource;
 
   return (
@@ -40,8 +42,9 @@ const SingleCource = ({ cource }) => {
             <p className="ml-1">Rating: {rating}</p>
             </div>
           </div>
+          <Link to={`/cources/${id}` }><button className="btn bg-red-900 w-full border-0">Premium Access</button></Link>
+
         </div>
-        <Link to={`cource/${id}`}><button className="btn bg-red-900 border-0">Premium Access</button></Link>
         
       </div>
 
