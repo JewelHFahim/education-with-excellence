@@ -1,0 +1,8 @@
+.cource-container img{
+    height: 300px;
+}
+
+.icons{
+    display: flex;
+    align-items: center;
+}
