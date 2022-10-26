@@ -19,7 +19,7 @@ const Header = () => {
       <div className="navbar  text-base-100 w-10/12 mx-auto">
         <div className="navbar-start ">
           <div className="dropdown text-slate-900">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+            <label tabIndex={0} className="btn btn-ghost text-white lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -43,13 +43,13 @@ const Header = () => {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/cource">Cources</Link>
+                <Link to="/cources">Cources</Link>
               </li>
               <li>
-                <Link to="/cource">Blog</Link>
+                <Link to="/blog">Blog</Link>
               </li>
               <li>
-                <Link to="/cource">Contact</Link>
+                <Link to="/contact">Contact</Link>
               </li>
             </ul>
           </div>
