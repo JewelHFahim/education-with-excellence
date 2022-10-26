@@ -12,6 +12,7 @@ import Contact from "../Pages/Others/Contact/Contact";
 import ErrorPage from "../Pages/Others/ErrorPage/ErrorPage";
 import FAQ from "../Pages/Others/FAQ/FAQ";
 import Profile from "../Pages/Others/Profile/Profile";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 
 export const router = createBrowserRouter([
@@ -38,7 +39,7 @@ export const router = createBrowserRouter([
             {
                 path: '/cources/:id',
                 loader: ({params})=> fetch(`http://localhost:5000/cources/${params.id}`),
-                element: <CourceDetail></CourceDetail>
+                element: <PrivateRoute><CourceDetail></CourceDetail></PrivateRoute>
             },
             {
                 path: '',

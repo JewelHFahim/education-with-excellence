@@ -1,6 +1,6 @@
 import { FacebookAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Context/UserContext";
 import "./Login.css";
 import { FaGoogle, FaFacebook } from "react-icons/fa";
@@ -10,6 +10,8 @@ const Login = () => {
   const googleProvider = new GoogleAuthProvider();
   const facebookProvider = new FacebookAuthProvider();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
 
 
   const handleLogin = (event) => {
@@ -23,7 +25,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate('/');
+        navigate(from, {replace: true});
       })
       .catch((error) => {
         console.error(error);
@@ -35,6 +37,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        navigate(from, {replace: true});
       })
       .then((error) => {
         console.error(error);
@@ -46,6 +49,7 @@ const Login = () => {
     .then(result =>{
       const user = result.user;
       console.log(user);
+      navigate(from, {replace: true});
     })
     .catch( error =>{
       console.error(error);

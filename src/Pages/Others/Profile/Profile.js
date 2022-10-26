@@ -9,10 +9,9 @@ const Profile = () => {
     const form = event.target;
     const displayName = form.displayName.value;
     const photoURL = form.photoURL.value;
-    // const password = form.password.value;
     console.log(displayName, photoURL);
 
-    profileUpdate()
+    profileUpdate({displayName, photoURL})
     .then(()=>{})
     .catch(()=>{})
   };
@@ -37,6 +36,7 @@ const Profile = () => {
                       type="text"
                       placeholder="name"
                       className="input input-bordered"
+                      defaultValue={user?.displayName}
                     />
                   </div>
 
@@ -67,20 +67,6 @@ const Profile = () => {
                       required
                     />
                   </div>
-
-                  {/* <div className="form-control">
-                    <label className="label">
-                      <span className="label-text">Password</span>
-                    </label>
-                    <input
-                      name="password"
-                      type="password"
-                      placeholder="password"
-                      className="input input-bordered"
-                      required
-                    />
-                  </div> */}
-
                   <div className="form-control mt-6">
                     <button
                       type="submit"
