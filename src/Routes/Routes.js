@@ -13,6 +13,7 @@ import ErrorPage from "../Pages/Others/ErrorPage/ErrorPage";
 import FAQ from "../Pages/Others/FAQ/FAQ";
 import Profile from "../Pages/Others/Profile/Profile";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import Test from '../Pages/Test/Test'
 
 
 export const router = createBrowserRouter([
@@ -67,7 +68,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/profile',
-                element: <Profile></Profile>
+                element: <PrivateRoute><Profile></Profile></PrivateRoute>
+            },
+            {
+                path: '/test',
+                element: <Test></Test>
             }
         ]
     }
