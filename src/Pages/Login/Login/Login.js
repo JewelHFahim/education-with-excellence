@@ -1,11 +1,12 @@
 import { FacebookAuthProvider, GoogleAuthProvider } from "firebase/auth";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Context/UserContext";
 import "./Login.css";
 import { FaGoogle, FaFacebook } from "react-icons/fa";
 
 const Login = () => {
+  const [error, setError] = useState();
   const { logIn, googleSignIn, facebookSignIn } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
   const facebookProvider = new FacebookAuthProvider();
@@ -25,10 +26,12 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        form.reset();
         navigate(from, {replace: true});
       })
       .catch((error) => {
         console.error(error);
+        setError(error.message);
       });
   };
 
@@ -41,6 +44,7 @@ const Login = () => {
       })
       .then((error) => {
         console.error(error);
+        setError(error.message);
       });
   };
 
@@ -53,6 +57,7 @@ const Login = () => {
     })
     .catch( error =>{
       console.error(error);
+      setError(error.message);
     })
   }
 
@@ -99,6 +104,7 @@ const Login = () => {
                     </Link>
                   </label>
                 </div>
+                <p className="text-red-500 font-medium">{error}</p>
                 <div className="form-control mt-6">
                   <button type="submit" className="btn bg-red-900">
                     Login

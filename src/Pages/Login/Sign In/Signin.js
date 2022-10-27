@@ -1,12 +1,22 @@
 import { FacebookAuthProvider, GoogleAuthProvider } from "firebase/auth";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../Context/UserContext";
 import { FaGoogle, FaFacebook } from "react-icons/fa";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
+
+
 
 const Signin = () => {
-  const { createUser, googleSignIn, facebookSignIn } = useContext(AuthContext);
+  const [error, setError] = useState();
+  const navigate = useNavigate();
+  const { createUser, googleSignIn, facebookSignIn, profileUpdate } =
+    useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
   const facebookProvider = new FacebookAuthProvider();
+
+  const notify = () => toast.success('Signup Success!');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -17,13 +27,24 @@ const Signin = () => {
     const password = form.password.value;
     console.log(name, photoURL, email, password);
 
+    if (password.length < 7) {
+      setError("Password should be at least 7 charchter or more");
+      return;
+    }
+
     createUser(email, password)
       .then((result) => {
         const user = result.user;
         console.log(user);
+        form.reset();
+        updatingProfile(name, photoURL);
+        notify();
+        setError('')
+        navigate('/')
       })
       .catch((error) => {
         console.error(error);
+        setError(error.message);
       });
   };
 
@@ -35,18 +56,33 @@ const Signin = () => {
       })
       .then((error) => {
         console.error(error);
+        setError(error.message);
       });
   };
 
-  const handleFacebookSignIn = () =>{
+  const handleFacebookSignIn = () => {
     facebookSignIn(facebookProvider)
-    .then(result =>{
-      const user = result.user;
-      console.log(user);
-    })
-    .catch( error =>{
-      console.error(error);
-    })
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error(error);
+        setError(error.message);
+      });
+  };
+
+  const updatingProfile = (name, photoURL) => {
+    const profile = {
+      displayName: name,
+      photoURL: photoURL,
+    };
+    profileUpdate(profile)
+      .then(() => {})
+      .catch((error) => {
+        console.error(error);
+        setError(error.message);
+      });
   };
 
   return (
@@ -113,13 +149,16 @@ const Signin = () => {
                     </a>
                   </label>
                 </div>
+                <p className="text-red-500 font-medium">{error}</p>
                 <div className="form-control mt-6">
                   <button
+                  
                     type="submit"
                     className="btn bg-red-900 hover:bg-red-700"
                   >
                     Sign In
                   </button>
+                  
                 </div>
               </form>
               <div className="divider">OR</div>
@@ -143,6 +182,7 @@ const Signin = () => {
           </div>
         </div>
       </div>
+      <ToastContainer position="top-center"/>
     </div>
   );
 };

@@ -1,3 +1,16 @@
 .profile-pic{
     width: 40px;
+    height: 40px;
+}
+
+.logo img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-left: 30px;
+}
+
+.logo-text{
+    padding-left: 5px;
+    border-left: 1px solid lightslategray;
 }
