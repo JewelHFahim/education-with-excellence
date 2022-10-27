@@ -29,17 +29,17 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/cources',
-                loader: ()=> fetch('http://localhost:5000/cources'),
+                loader: ()=> fetch('https://education-with-excellence-server.vercel.app/cources'),
                 element: <Cources></Cources>
             },
             {
                 path: '/category/:id',
-                loader: ({params})=>fetch(`http://localhost:5000/category/${params.id}`),
+                loader: ({params})=>fetch(`https://education-with-excellence-server.vercel.app/category/${params.id}`),
                 element: <Category></Category>
             },
             {
                 path: '/cources/:id',
-                loader: ({params})=> fetch(`http://localhost:5000/cources/${params.id}`),
+                loader: ({params})=> fetch(`https://education-with-excellence-server.vercel.app/cources/${params.id}`),
                 element: <PrivateRoute><CourceDetail></CourceDetail></PrivateRoute>
             },
             {
