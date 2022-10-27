@@ -13,7 +13,7 @@ const Contact = () => {
         <p>Contact Us</p>
       </div>
       <div className="divider">with</div>
-      <div className="grid grid-cols-3 gap-5 w-9/12 mx-auto mt-5">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 w-9/12 mx-auto mt-5">
         <div className="card  bg-base-100 shadow-xl border border-slate-200 p-2 m-5  items-center">
           <FaMapMarked className="text-8xl text-[#FF5349]" />
           <div className="card-body items-center text-center">
@@ -38,10 +38,10 @@ const Contact = () => {
           </div>
         </div>
       </div>
-      <div className="bg-slate-900 w-9/12 mx-auto p-8 mt-4 text-center flex justify-around ">
+      <div className="bg-slate-900 w-9/12 mx-auto p-8 my-5 text-center lg:flex justify-around ">
         <div className="flex items-center">
           <FaMailBulk  className="text-6xl mr-2 text-[#FF5349]"/>
-          <p className="text-white text-4xl "> Subscribe to Newsletter</p>
+          <p className="text-white text-4xl my-2"> Subscribe to Newsletter</p>
         </div>
         <input
           className="input input-bordered input-success w-full max-w-xs"

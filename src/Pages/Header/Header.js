@@ -2,7 +2,8 @@ import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Context/UserContext";
 import "./Header.css";
-import logo from '../../assets/images/logo3.png'
+import logo from "../../assets/images/logo3.png";
+import profile from "../../assets/images/profile.jpg";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -19,7 +20,6 @@ const Header = () => {
   const handleClick = () => {
     setColoreMode((current) => !current);
   };
-
 
   return (
     <div
@@ -56,7 +56,7 @@ const Header = () => {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <NavLink  to="/cources">Cources</NavLink>
+                <NavLink to="/cources">Cources</NavLink>
               </li>
               <li>
                 <NavLink to="/blog">Blog</NavLink>
@@ -66,12 +66,17 @@ const Header = () => {
               </li>
             </ul>
           </div>
-          <div  className="logo flex justify-center items-center">
-          
-            <img src={logo} alt="" className=" " />
-            <small className="logo-text text-[#ff4500] font-medium hidden lg:block"> <span className="text-lg">Education</span> <br /> with <br /> Excellence</small>
-       
-          </div>
+
+          <Link to="/">
+            <div className="loggo flex  justify-center items-center">
+              <img src={logo} alt="" className=" " />
+              <small className="logo-text text-[#ff4500] font-medium hidden lg:block">
+                {" "}
+                <span className="text-lg">Education</span> <br /> with <br />{" "}
+                Excellence
+              </small>
+            </div>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex ">
           <ul className="menu menu-horizontal p-0">
@@ -79,7 +84,7 @@ const Header = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <NavLink  to="/cources">Cources</NavLink>
+              <NavLink to="/cources">Cources</NavLink>
             </li>
             <li>
               <NavLink to="/blog">Blog</NavLink>
@@ -102,14 +107,14 @@ const Header = () => {
                   data-tip={user?.displayName}
                 >
                   <img
-                    className="profile-pic border border-red-700 p-0.5 rounded-full"
+                    className="profile-pic border border-emerald-500 p-0.5 rounded-full"
                     src={user?.photoURL}
                     alt={user?.displayName}
                   />
                 </Link>
               ) : (
-                <Link to="/profile">
-                  <p>{user?.email}</p>
+                <Link className="profile-pic" to="/profile">
+                  <img className="rounded-full" src={profile} alt="" />
                 </Link>
               )}
             </>
@@ -134,16 +139,22 @@ const Header = () => {
             </>
           )}
         </div>
-        {/* <input type="checkbox" className="toggle" checked /> */}
-        <button 
+        <input
+          onClick={handleClick}
+          type="checkbox"
+          className="toggle toggle-sm lg:hidden ml-2"
+          checked
+        />
+        <button
           style={{
             backgroundColor: colorMode ? "dark" : "",
             color: colorMode ? "white" : "",
           }}
           onClick={handleClick}
-          className="ml-2 btn btn-xs"
+          className="ml-2 btn btn-xs hidden lg:block"
         >
-          Change Color
+          {" "}
+          Change Color{" "}
         </button>
       </div>
     </div>

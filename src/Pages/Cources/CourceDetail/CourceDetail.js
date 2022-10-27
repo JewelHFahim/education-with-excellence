@@ -1,5 +1,6 @@
 import React from "react";
 import Pdf from "react-to-pdf";
+import './CourceDetail.css'
 
 import { useLoaderData } from "react-router-dom";
 import { FaStar, FaBookmark, FaShopify } from "react-icons/fa";
@@ -25,10 +26,13 @@ const CourceDetail = () => {
         <input type="checkbox" id="my-modal-6" className="modal-toggle" />
         <div className="modal modal-bottom sm:modal-middle">
           <div className="modal-box">
-
+          <div className=" modal-pic border border-slate-400 rounded-lg mt-5 flex justify-between p-1 items-center">
+            <img src={image} alt="" />
             <h3 className="font-bold text-lg">{title}</h3>
             <p className="py-4">{price}$</p>
-            <p><FaStar className="text-yellow-600"/>{rating}</p>
+            <div className="flex items-center"><FaStar className="text-yellow-600 mr-1"/><p>{rating}</p></div>
+            
+            </div>
             <div className="modal-action">
               <label htmlFor="my-modal-6" className="btn">
                 Close
